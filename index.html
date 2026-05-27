@@ -9,14 +9,13 @@
 :root{--bg:#060d1a;--surface:#0d1b2e;--surface2:#112240;--border:#1e3a5f;--primary:#2563eb;--accent:#f59e0b;--accent2:#10b981;--text:#e2e8f0;--text-muted:#64748b;--danger:#ef4444}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-.container{max-width:900px;margin:0 auto;padding:40px 20px;position:relative;z-index:1}
+.container{max-width:900px;margin:0 auto;padding:40px 20px}
 .header{text-align:center;margin-bottom:50px}
 .logo{font-size:48px;font-weight:900;background:linear-gradient(135deg,#2563eb,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-2px;margin-bottom:8px}
 .logo span{background:linear-gradient(135deg,#f59e0b,#ef4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.tagline{color:var(--text-muted);font-size:16px;font-weight:300}
+.tagline{color:var(--text-muted);font-size:16px}
 .api-section{background:linear-gradient(135deg,#0d1b2e,#112240);border:1px solid var(--accent);border-radius:16px;padding:24px;margin-bottom:32px}
 .api-title{font-size:15px;font-weight:700;color:var(--accent);margin-bottom:16px}
-.api-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .form-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:36px;margin-bottom:24px}
 .section-title{font-size:13px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
@@ -36,7 +35,7 @@ select option{background:var(--surface2)}
 .progress.show{display:block}
 .prog-title{font-size:16px;font-weight:700;margin-bottom:20px;color:var(--accent);display:flex;align-items:center;gap:10px}
 .spinner{width:20px;height:20px;border:2px solid rgba(245,158,11,0.2);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
-.log{background:#040a12;border-radius:10px;padding:16px;font-size:13px;line-height:2;max-height:200px;overflow-y:auto;font-family:monospace}
+.log{background:#040a12;border-radius:10px;padding:16px;font-size:13px;line-height:2;max-height:250px;overflow-y:auto;font-family:monospace}
 .log-line{display:flex;gap:10px}
 .dot{color:var(--accent2)}
 .dot.err{color:var(--danger)}
@@ -52,7 +51,7 @@ select option{background:var(--surface2)}
 .err-title{color:var(--danger);font-weight:700;margin-bottom:8px}
 .err-msg{color:var(--text-muted);font-size:13px;word-break:break-all}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:600px){.api-grid,.grid2{grid-template-columns:1fr}.grid3{grid-template-columns:1fr 1fr}.form-card{padding:20px}}
+@media(max-width:600px){.grid2,.grid3{grid-template-columns:1fr}.form-card{padding:20px}}
 </style>
 </head>
 <body>
@@ -64,16 +63,10 @@ select option{background:var(--surface2)}
 </div>
 
 <div class="api-section">
-  <div class="api-title">🔑 کلیدهای هوش مصنوعی</div>
-  <div class="api-grid">
-    <div class="group">
-      <label>کلید کلود (Anthropic)</label>
-      <input type="password" id="claudeKey" placeholder="sk-ant-..." />
-    </div>
-    <div class="group">
-      <label>کلید جمینی (Google) — اختیاری</label>
-      <input type="password" id="geminiKey" placeholder="AIza..." />
-    </div>
+  <div class="api-title">🔑 کلید هوش مصنوعی</div>
+  <div class="group">
+    <label>کلید کلود (Anthropic)</label>
+    <input type="password" id="claudeKey" placeholder="sk-ant-..." />
   </div>
 </div>
 
@@ -111,13 +104,12 @@ select option{background:var(--surface2)}
   <div class="section-title">🎨 سبک بصری</div>
   <div class="grid3">
     <div class="group">
-      <label>سبک تصویر</label>
+      <label>سبک</label>
       <select id="style">
-        <option value="modern professional infographic">مدرن و حرفه‌ای</option>
-        <option value="cartoon colorful bright">کارتونی رنگارنگ</option>
-        <option value="cinematic dark dramatic">سینمایی تیره</option>
-        <option value="minimal clean white">مینیمال</option>
-        <option value="bold colorful energetic">پررنگ و جذاب</option>
+        <option value="modern professional">مدرن و حرفه‌ای</option>
+        <option value="colorful energetic">رنگارنگ و پرانرژی</option>
+        <option value="dark premium">تیره و لوکس</option>
+        <option value="minimal clean">مینیمال</option>
       </select>
     </div>
     <div class="group">
@@ -144,9 +136,10 @@ select option{background:var(--surface2)}
       <select id="color">
         <option value="deep blue navy">آبی تیره</option>
         <option value="emerald green">سبز زمردی</option>
-        <option value="dark purple violet">بنفش تیره</option>
+        <option value="dark purple">بنفش تیره</option>
         <option value="crimson red">قرمز</option>
         <option value="golden amber">طلایی</option>
+        <option value="teal">فیروزه‌ای</option>
       </select>
     </div>
     <div class="group">
@@ -217,7 +210,7 @@ function addLog(msg, isErr=false) {
   el.scrollTop = el.scrollHeight;
 }
 
-async function callClaude(key, prompt, maxTokens=1500) {
+async function callClaude(key, prompt, maxTokens=2000) {
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
@@ -240,26 +233,20 @@ async function callClaude(key, prompt, maxTokens=1500) {
   return d.content[0].text;
 }
 
-async function callGemini(key, prompt) {
-  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${key}`, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      instances: [{prompt}],
-      parameters: {sampleCount:1, aspectRatio:'16:9'}
-    })
-  });
-  if (!r.ok) return null;
-  const d = await r.json();
-  return d.predictions?.[0]?.bytesBase64Encoded || null;
-}
-
 function parseJSON(text) {
   const s = text.indexOf('{'), e = text.lastIndexOf('}')+1;
   return JSON.parse(text.slice(s, e));
 }
 
-function roundRect(ctx, x, y, w, h, r, fill, stroke) {
+// ===== CANVAS DRAWING =====
+function hexToRgb(hex) {
+  hex = hex.replace('#','');
+  if(hex.length===3) hex=hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+  return [parseInt(hex.slice(0,2),16), parseInt(hex.slice(2,4),16), parseInt(hex.slice(4,6),16)];
+}
+
+function roundRect(ctx, x, y, w, h, r, fill, stroke, strokeW=2) {
+  r = Math.min(r, w/2, h/2);
   ctx.beginPath();
   ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y);
   ctx.quadraticCurveTo(x+w,y,x+w,y+r);
@@ -270,14 +257,14 @@ function roundRect(ctx, x, y, w, h, r, fill, stroke) {
   ctx.lineTo(x,y+r);
   ctx.quadraticCurveTo(x,y,x+r,y);
   ctx.closePath();
-  ctx.fillStyle=fill; ctx.fill();
-  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke();}
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=strokeW;ctx.stroke();}
 }
 
-function drawArrow(ctx, x1, y1, x2, y2, color, lw) {
+function drawArrow(ctx, x1, y1, x2, y2, color, lw=2) {
   ctx.strokeStyle=color; ctx.fillStyle=color; ctx.lineWidth=lw;
   ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
-  const a=Math.atan2(y2-y1,x2-x1), s=10;
+  const a=Math.atan2(y2-y1,x2-x1), s=12;
   ctx.beginPath();
   ctx.moveTo(x2,y2);
   ctx.lineTo(x2-s*Math.cos(a-0.4),y2-s*Math.sin(a-0.4));
@@ -285,87 +272,333 @@ function drawArrow(ctx, x1, y1, x2, y2, color, lw) {
   ctx.closePath(); ctx.fill();
 }
 
-function wrapText(ctx, text, x, y, maxW, lineH) {
-  const words=text.split(' '); let line='', cy=y+lineH;
-  for(const w of words){
-    const t=line+w+' ';
-    if(ctx.measureText(t).width>maxW&&line){ctx.fillText(line,x,cy);line=w+' ';cy+=lineH;}
-    else line=t;
+function drawWrappedText(ctx, text, x, y, maxW, lineH, align='right') {
+  const words = text.split(' ');
+  let lines = [], cur = '';
+  for(const w of words) {
+    const t = cur ? cur+' '+w : w;
+    if(ctx.measureText(t).width > maxW && cur) {
+      lines.push(cur); cur = w;
+    } else cur = t;
   }
-  ctx.fillText(line,x,cy);
+  if(cur) lines.push(cur);
+  for(let i=0; i<lines.length; i++) {
+    let tx = x;
+    if(align==='center') tx = x + maxW/2 - ctx.measureText(lines[i]).width/2;
+    else if(align==='right') tx = x + maxW - ctx.measureText(lines[i]).width;
+    ctx.fillText(lines[i], tx, y + i*lineH);
+  }
+  return lines.length;
 }
 
-async function drawSlide(palette, elements, imgB64, W=1280, H=720) {
-  const canvas=document.createElement('canvas');
-  canvas.width=W; canvas.height=H;
-  const ctx=canvas.getContext('2d');
-  ctx.fillStyle=palette.background; ctx.fillRect(0,0,W,H);
+function drawGradientBg(ctx, x, y, w, h, color1, color2, vertical=true) {
+  const grad = vertical 
+    ? ctx.createLinearGradient(x, y, x, y+h)
+    : ctx.createLinearGradient(x, y, x+w, y);
+  grad.addColorStop(0, color1);
+  grad.addColorStop(1, color2);
+  ctx.fillStyle = grad;
+  ctx.fillRect(x, y, w, h);
+}
 
-  if(imgB64) {
-    await new Promise(res=>{
-      const img=new Image();
-      img.onload=()=>{ctx.drawImage(img,0,0,W,H);res();};
-      img.onerror=res;
-      img.src='data:image/png;base64,'+imgB64;
-    });
-    ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(0,0,W,H);
+function drawTable(ctx, x, y, w, h, headers, rows, headerBg, headerText, rowBg1, rowBg2, textColor, fontSize=14) {
+  const colW = w / headers.length;
+  const rowH = h / (rows.length + 1);
+  
+  // Header
+  ctx.fillStyle = headerBg;
+  ctx.fillRect(x, y, w, rowH);
+  ctx.fillStyle = headerText;
+  ctx.font = `bold ${fontSize}px Vazirmatn, Arial`;
+  for(let i=0; i<headers.length; i++) {
+    const cx = x + (headers.length-1-i)*colW + colW/2;
+    ctx.textAlign = 'center';
+    ctx.fillText(headers[i], cx, y + rowH/2 + fontSize/3);
   }
+  
+  // Rows
+  for(let r=0; r<rows.length; r++) {
+    ctx.fillStyle = r%2===0 ? rowBg1 : rowBg2;
+    ctx.fillRect(x, y + (r+1)*rowH, w, rowH);
+    ctx.fillStyle = textColor;
+    ctx.font = `${fontSize}px Vazirmatn, Arial`;
+    for(let c=0; c<rows[r].length; c++) {
+      const cx = x + (rows[r].length-1-c)*colW + colW/2;
+      ctx.textAlign = 'center';
+      ctx.fillText(String(rows[r][c]), cx, y + (r+1)*rowH + rowH/2 + fontSize/3);
+    }
+  }
+  
+  // Borders
+  ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+  ctx.lineWidth = 1;
+  for(let i=0; i<=rows.length+1; i++) {
+    ctx.beginPath();
+    ctx.moveTo(x, y + i*rowH);
+    ctx.lineTo(x+w, y + i*rowH);
+    ctx.stroke();
+  }
+  for(let i=0; i<=headers.length; i++) {
+    ctx.beginPath();
+    ctx.moveTo(x + i*colW, y);
+    ctx.lineTo(x + i*colW, y+h);
+    ctx.stroke();
+  }
+  ctx.textAlign = 'start';
+}
+
+function drawPieChart(ctx, cx, cy, r, data, colors) {
+  let start = -Math.PI/2;
+  const total = data.reduce((s,d)=>s+(d.value||0),0);
+  for(let i=0; i<data.length; i++) {
+    const slice = (data[i].value/total) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, start, start+slice);
+    ctx.closePath();
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    const mid = start + slice/2;
+    const lx = cx + (r*0.65)*Math.cos(mid);
+    const ly = cy + (r*0.65)*Math.sin(mid);
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 13px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(Math.round(data[i].value)+'%', lx, ly+5);
+    start += slice;
+  }
+  ctx.textAlign = 'start';
+}
+
+function drawBarChart(ctx, x, y, w, h, data, colors, bgColor) {
+  const maxVal = Math.max(...data.map(d=>d.value));
+  const barW = (w - (data.length+1)*8) / data.length;
+  
+  for(let i=0; i<data.length; i++) {
+    const barH = (data[i].value/maxVal) * (h-40);
+    const bx = x + 8 + i*(barW+8);
+    const by = y + h - 40 - barH;
+    
+    const grad = ctx.createLinearGradient(bx, by, bx, by+barH);
+    grad.addColorStop(0, colors[i%colors.length]);
+    grad.addColorStop(1, colors[i%colors.length]+'88');
+    ctx.fillStyle = grad;
+    roundRect(ctx, bx, by, barW, barH, 4, colors[i%colors.length]+'dd');
+    
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 13px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(data[i].value, bx+barW/2, by-6);
+    
+    ctx.font = '11px Vazirmatn, Arial';
+    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    const label = data[i].label || '';
+    ctx.fillText(label.length>6?label.slice(0,6)+'..':label, bx+barW/2, y+h-10);
+  }
+  ctx.textAlign = 'start';
+}
+
+function drawImagePlaceholder(ctx, x, y, w, h, r, bgColor, label) {
+  roundRect(ctx, x, y, w, h, r, bgColor);
+  ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([6,4]);
+  roundRect(ctx, x+4, y+4, w-8, h-8, r, null, 'rgba(255,255,255,0.3)');
+  ctx.setLineDash([]);
+  
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.font = '36px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('📷', x+w/2, y+h/2-10);
+  
+  ctx.font = '14px Vazirmatn, Arial';
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  ctx.fillText(label || 'تصویر', x+w/2, y+h/2+25);
+  ctx.textAlign = 'start';
+}
+
+async function renderSlide(palette, elements, W=1280, H=720) {
+  const canvas = document.createElement('canvas');
+  canvas.width=W; canvas.height=H;
+  const ctx = canvas.getContext('2d');
+  
+  // Background
+  ctx.fillStyle = palette.background;
+  ctx.fillRect(0, 0, W, H);
 
   for(const e of elements) {
-    try{
-      const t=e.type, x=+e.x||0, y=+e.y||0, w=+e.w||100, h=+e.h||50;
-      const color=e.color||palette.primary, r=+e.radius||8;
-      if(t==='header_band'){ctx.fillStyle=color;ctx.fillRect(0,y,W,h);}
-      else if(t==='footer_band'){ctx.fillStyle=color;ctx.fillRect(0,H-h,W,h);}
-      else if(t==='rect'){roundRect(ctx,x,y,w,h,r,color,e.border||null);}
-      else if(t==='text'){
-        ctx.fillStyle=color;
-        ctx.font=`${e.bold?'bold ':''} ${e.size||18}px Vazirmatn,Arial`;
-        ctx.fillText(e.text||'',x,y+(+e.size||18));
+    try {
+      const t = e.type;
+      const x=+e.x||0, y=+e.y||0, w=+e.w||100, h=+e.h||50;
+      const color = e.color || palette.primary;
+      const r = +e.radius||8;
+      ctx.textAlign = 'start';
+
+      if(t==='gradient_bg') {
+        drawGradientBg(ctx, x, y, w, h, e.color1||palette.background, e.color2||palette.secondary, e.vertical!==false);
       }
-      else if(t==='text_wrapped'){
-        ctx.fillStyle=color;
-        ctx.font=`${e.size||16}px Vazirmatn,Arial`;
-        wrapText(ctx,e.text||'',x,y,e.max_w||300,(+e.size||16)+6);
-      }
-      else if(t==='arrow'){drawArrow(ctx,x,y,+e.x2||x+100,+e.y2||y,color,+e.line_width||2);}
-      else if(t==='divider'){ctx.fillStyle=color;ctx.fillRect(x,y,w,+e.thickness||2);}
-      else if(t==='icon_box'){
-        roundRect(ctx,x,y,w,h,r,e.box_color||palette.primary);
-        ctx.fillStyle=e.text_color||'#fff';
-        ctx.font=`bold ${e.title_size||16}px Vazirmatn,Arial`;
-        ctx.fillText(e.title||'',x+10,y+28);
-        ctx.font=`${e.body_size||13}px Vazirmatn,Arial`;
-        ctx.fillText(e.body||'',x+10,y+52);
-      }
-      else if(t==='number_highlight'){
-        roundRect(ctx,x,y,w,h,r,e.box_color||palette.accent);
-        ctx.fillStyle=e.number_color||'#fff';
-        ctx.font=`bold ${e.number_size||48}px Vazirmatn,Arial`;
-        ctx.fillText(String(e.number||''),x+10,y+60);
-        ctx.fillStyle=e.label_color||'#fff';
-        ctx.font=`${e.label_size||14}px Vazirmatn,Arial`;
-        ctx.fillText(e.label||'',x+10,y+h-10);
-      }
-      else if(t==='step_boxes'){
-        const steps=e.steps||[],sw=+e.step_w||180,sh=+e.step_h||100,gap=+e.gap||40;
-        const colors=e.colors||[palette.primary,palette.accent];
-        for(let i=0;i<steps.length;i++){
-          const sx=x+i*(sw+gap);
-          roundRect(ctx,sx,y,sw,sh,10,colors[i%colors.length]);
-          ctx.fillStyle='#fff';
-          ctx.font='bold 14px Vazirmatn,Arial';
-          ctx.fillText(steps[i].title||'',sx+10,y+24);
-          ctx.font='12px Vazirmatn,Arial';
-          ctx.fillText(steps[i].body||'',sx+10,y+46);
-          if(i<steps.length-1)drawArrow(ctx,sx+sw+5,y+sh/2,sx+sw+gap-5,y+sh/2,'#fff',2);
+      else if(t==='header_band') {
+        if(e.gradient_end) {
+          drawGradientBg(ctx, 0, y, W, h, color, e.gradient_end, false);
+        } else {
+          ctx.fillStyle=color; ctx.fillRect(0,y,W,h);
         }
       }
-    }catch(e){}
+      else if(t==='footer_band') {
+        ctx.fillStyle=color; ctx.fillRect(0,H-h,W,h);
+      }
+      else if(t==='rect') {
+        roundRect(ctx, x, y, w, h, r, color, e.border||null, e.border_width||2);
+      }
+      else if(t==='circle') {
+        ctx.beginPath();
+        ctx.arc(x+w/2, y+w/2, w/2, 0, Math.PI*2);
+        ctx.fillStyle=color; ctx.fill();
+        if(e.border){ctx.strokeStyle=e.border;ctx.lineWidth=2;ctx.stroke();}
+      }
+      else if(t==='text') {
+        const size=+e.size||18;
+        ctx.font=`${e.bold?'bold ':''} ${size}px Vazirmatn, Arial`;
+        ctx.fillStyle=color;
+        ctx.fillText(e.text||'', x, y+size);
+      }
+      else if(t==='text_wrapped') {
+        const size=+e.size||16;
+        ctx.font=`${e.bold?'bold ':''} ${size}px Vazirmatn, Arial`;
+        ctx.fillStyle=color;
+        drawWrappedText(ctx, e.text||'', x, y, e.max_w||300, size+6, e.align||'right');
+      }
+      else if(t==='text_center') {
+        const size=+e.size||18;
+        ctx.font=`${e.bold?'bold ':''} ${size}px Vazirmatn, Arial`;
+        ctx.fillStyle=color;
+        ctx.textAlign='center';
+        ctx.fillText(e.text||'', x+w/2, y+size);
+        ctx.textAlign='start';
+      }
+      else if(t==='arrow') {
+        drawArrow(ctx, x, y, +e.x2||x+100, +e.y2||y, color, +e.line_width||2);
+      }
+      else if(t==='line') {
+        ctx.strokeStyle=color; ctx.lineWidth=+e.line_width||2;
+        ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(+e.x2||x+w, +e.y2||y); ctx.stroke();
+      }
+      else if(t==='divider') {
+        if(e.gradient_end) {
+          const grad=ctx.createLinearGradient(x,y,x+w,y);
+          grad.addColorStop(0,color); grad.addColorStop(1,e.gradient_end);
+          ctx.fillStyle=grad;
+        } else ctx.fillStyle=color;
+        ctx.fillRect(x, y, w, +e.thickness||3);
+      }
+      else if(t==='icon_box') {
+        const bc=e.box_color||palette.primary;
+        roundRect(ctx, x, y, w, h, r, bc, e.border||null);
+        const tc=e.text_color||'#ffffff';
+        const ts=+e.title_size||16, bs=+e.body_size||13;
+        ctx.fillStyle=tc;
+        ctx.font=`bold ${ts}px Vazirmatn, Arial`;
+        drawWrappedText(ctx, e.title||'', x+10, y+ts+5, w-20, ts+4, 'right');
+        ctx.font=`${bs}px Vazirmatn, Arial`;
+        ctx.fillStyle=tc+'cc';
+        drawWrappedText(ctx, e.body||'', x+10, y+ts+20, w-20, bs+4, 'right');
+      }
+      else if(t==='number_highlight') {
+        const bc=e.box_color||palette.accent;
+        roundRect(ctx, x, y, w, h, r, bc);
+        const ns=+e.number_size||52;
+        ctx.fillStyle=e.number_color||'#ffffff';
+        ctx.font=`900 ${ns}px Vazirmatn, Arial`;
+        ctx.textAlign='center';
+        ctx.fillText(String(e.number||''), x+w/2, y+ns+10);
+        ctx.font=`${+e.label_size||14}px Vazirmatn, Arial`;
+        ctx.fillStyle=(e.label_color||'#ffffff')+'cc';
+        ctx.fillText(e.label||'', x+w/2, y+h-12);
+        ctx.textAlign='start';
+      }
+      else if(t==='step_boxes') {
+        const steps=e.steps||[], sw=+e.step_w||200, sh=+e.step_h||110, gap=+e.gap||50;
+        const colors=e.colors||[palette.primary, palette.accent, palette.secondary];
+        for(let i=0; i<steps.length; i++) {
+          const sx=x+i*(sw+gap);
+          const c=colors[i%colors.length];
+          roundRect(ctx, sx, y, sw, sh, 12, c);
+          const numH = sh*0.4;
+          ctx.fillStyle='rgba(0,0,0,0.15)';
+          ctx.fillRect(sx, y, sw, numH);
+          ctx.fillStyle='rgba(255,255,255,0.9)';
+          ctx.font=`bold 22px Vazirmatn, Arial`;
+          ctx.textAlign='center';
+          ctx.fillText(String(i+1), sx+sw/2, y+numH/2+8);
+          ctx.font=`bold 14px Vazirmatn, Arial`;
+          ctx.fillStyle='#fff';
+          drawWrappedText(ctx, steps[i].title||'', sx+8, y+numH+14, sw-16, 18, 'center');
+          ctx.font=`12px Vazirmatn, Arial`;
+          ctx.fillStyle='rgba(255,255,255,0.75)';
+          drawWrappedText(ctx, steps[i].body||'', sx+8, y+numH+38, sw-16, 15, 'center');
+          if(i<steps.length-1) drawArrow(ctx, sx+sw+8, y+sh/2, sx+sw+gap-8, y+sh/2, 'rgba(255,255,255,0.7)', 2);
+          ctx.textAlign='start';
+        }
+      }
+      else if(t==='table') {
+        drawTable(ctx, x, y, w, h,
+          e.headers||[], e.rows||[],
+          e.header_bg||palette.primary,
+          e.header_text||'#ffffff',
+          e.row_bg1||palette.surface||'rgba(255,255,255,0.05)',
+          e.row_bg2||'rgba(255,255,255,0.1)',
+          e.text_color||palette.text||'#ffffff',
+          +e.font_size||14
+        );
+      }
+      else if(t==='pie_chart') {
+        const colors=e.colors||[palette.primary,palette.accent,palette.secondary,'#ef4444','#10b981'];
+        drawPieChart(ctx, x+w/2, y+h/2, Math.min(w,h)/2-10, e.data||[], colors);
+        if(e.legend && e.data) {
+          for(let i=0; i<e.data.length; i++) {
+            ctx.fillStyle=colors[i%colors.length];
+            ctx.fillRect(x+w+10, y+i*22, 14, 14);
+            ctx.fillStyle=e.text_color||palette.text||'#fff';
+            ctx.font='12px Vazirmatn, Arial';
+            ctx.fillText(e.data[i].label||'', x+w+30, y+i*22+12);
+          }
+        }
+      }
+      else if(t==='bar_chart') {
+        const colors=e.colors||[palette.primary,palette.accent,palette.secondary,'#ef4444','#10b981'];
+        drawBarChart(ctx, x, y, w, h, e.data||[], colors, palette.background);
+      }
+      else if(t==='image_placeholder') {
+        drawImagePlaceholder(ctx, x, y, w, h, r, e.bg_color||palette.secondary||'#1e3a5f', e.label||'تصویر');
+      }
+      else if(t==='progress_bar') {
+        const pct=Math.min(+e.percent||0,100)/100;
+        roundRect(ctx, x, y, w, h, h/2, e.bg||'rgba(255,255,255,0.15)');
+        if(pct>0) {
+          const grad=ctx.createLinearGradient(x,y,x+w,y);
+          grad.addColorStop(0,e.color1||palette.primary);
+          grad.addColorStop(1,e.color2||palette.accent);
+          roundRect(ctx, x, y, w*pct, h, h/2, null);
+          ctx.fillStyle=grad; ctx.fill();
+        }
+        if(e.label) {
+          ctx.fillStyle=e.text_color||'#fff';
+          ctx.font=`bold ${+e.font_size||14}px Vazirmatn, Arial`;
+          ctx.textAlign='center';
+          ctx.fillText(e.label, x+w/2, y+h/2+5);
+          ctx.textAlign='start';
+        }
+      }
+    } catch(err) { console.warn('Element error:', e.type, err); }
   }
   return canvas.toDataURL('image/png').split(',')[1];
 }
 
+// ===== PPTX BUILDER =====
 function buildZip(files) {
   const enc=new TextEncoder();
   function b64(s){const b=atob(s);const u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u;}
@@ -418,9 +651,9 @@ function makePPTX(images) {
   return buildZip(files);
 }
 
+// ===== MAIN BUILD =====
 async function build() {
   const cKey = document.getElementById('claudeKey').value.trim();
-  const gKey = document.getElementById('geminiKey').value.trim();
   const topic = document.getElementById('topic').value.trim();
   if(!cKey){alert('لطفاً کلید کلود را وارد کنید');return;}
   if(!topic){alert('لطفاً موضوع را وارد کنید');return;}
@@ -448,70 +681,152 @@ async function build() {
   document.getElementById('logEl').innerHTML='';
 
   try {
-    addLog('مرحله ۱: کلود در حال طراحی ساختار...');
-    const sp = `You are a world-class presentation designer. Create a stunning presentation.
-Topic: ${ud.topic}
-Subtopic: ${ud.subtopic}
-Audience: ${ud.audience}
-Goal: ${ud.goal}
-Slides: ${ud.slides}
-Color: ${ud.color}
-Style: ${ud.style}
-Theme: ${ud.theme}
+    addLog('مرحله ۱: کلود در حال طراحی ساختار کلی...');
+    
+    const sp = `You are a world-class presentation architect and infographic designer.
+Create a complete, stunning presentation plan.
 
-Return ONLY this JSON:
-{"palette":{"background":"#hex","primary":"#hex","secondary":"#hex","accent":"#hex","text":"#hex"},"slides":[{"number":1,"title":"Persian title","focus":"main point","image_prompt":"detailed English prompt, ${ud.style} style, high quality"}]}`;
+User Info:
+- Topic: ${ud.topic}
+- Subtopic: ${ud.subtopic}
+- Audience: ${ud.audience}
+- Goal: ${ud.goal}
+- Style: ${ud.style}
+- Tone: ${ud.tone}
+- Slides: ${ud.slides}
+- Color theme: ${ud.color}
+- Theme: ${ud.theme}
+- Brand: ${ud.brand}
+- Hashtags: ${ud.hashtags}
 
-    const st = await callClaude(cKey, sp, 1000);
+Design Rules:
+1. Create a LOGICAL STORY across all slides - each slide has a clear role
+2. Choose a BEAUTIFUL color palette that fits the topic perfectly
+3. For each slide, decide what type of visual would work BEST:
+   - Data slides → tables or charts
+   - Process slides → step_boxes with arrows  
+   - Comparison slides → side by side cards
+   - Statistics → number_highlight elements
+   - Overview → icon_box grid
+   - Introduction/closing → image_placeholder + strong text
+4. Make it look like a TOP CONSULTING FIRM presentation
+
+Return ONLY this JSON (no extra text):
+{
+  "palette": {
+    "background": "#hex",
+    "primary": "#hex", 
+    "secondary": "#hex",
+    "accent": "#hex",
+    "text": "#hex",
+    "surface": "#hex"
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Persian title",
+      "subtitle": "Persian subtitle",
+      "focus": "main point of this slide",
+      "layout_type": "stats|process|comparison|data_table|overview|intro|closing",
+      "has_table": false,
+      "has_chart": false,
+      "has_image_placeholder": true,
+      "chart_type": "bar|pie|none"
+    }
+  ]
+}`;
+
+    const st = await callClaude(cKey, sp, 1200);
     const structure = parseJSON(st);
     const palette = structure.palette;
     const slidesInfo = structure.slides;
-    addLog(`ساختار آماده شد: ${slidesInfo.length} اسلاید ✓`);
+    addLog(`ساختار آماده: ${slidesInfo.length} اسلاید ✓`);
 
     const slideImages = [];
+    
     for(let i=0; i<slidesInfo.length; i++) {
       const slide = slidesInfo[i];
-      addLog(`اسلاید ${i+1}: کلود در حال طراحی المان‌ها...`);
-      const ep = `Design ONE professional infographic slide. Canvas 1280x720px.
-Title: ${slide.title}
+      addLog(`اسلاید ${i+1}: "${slide.title}" — کلود در حال طراحی...`);
+      
+      const ep = `You are a world-class infographic designer. Design ONE stunning slide.
+
+Canvas: 1280x720 pixels
+Slide title: ${slide.title}
+Subtitle: ${slide.subtitle||''}
 Focus: ${slide.focus}
+Layout type: ${slide.layout_type}
+Has table: ${slide.has_table}
+Has chart: ${slide.has_chart} (type: ${slide.chart_type})
+Has image placeholder: ${slide.has_image_placeholder}
 Style: ${ud.style}
-Brand: ${ud.brand}
-Hashtags: ${ud.hashtags}
-Palette: bg=${palette.background}, primary=${palette.primary}, accent=${palette.accent}, text=${palette.text}
+Brand: ${ud.brand||''}
+Hashtags: ${ud.hashtags||''}
+Instagram: ${ud.instagram||''}
+Phone: ${ud.phone||''}
 
-Use 8-10 elements. Make it look like a professional consulting infographic.
-Types: header_band(y,h,color), footer_band(h,color), rect(x,y,w,h,color,radius), text(x,y,text,size,color,bold), text_wrapped(x,y,text,size,color,max_w), arrow(x,y,x2,y2,color,line_width), divider(x,y,w,color,thickness), icon_box(x,y,w,h,title,body,box_color,text_color), number_highlight(x,y,w,h,number,label,box_color,number_color,label_color), step_boxes(x,y,steps:[{title,body}],step_w,step_h,gap,colors:[])
+Color palette:
+- background: ${palette.background}
+- primary: ${palette.primary}
+- secondary: ${palette.secondary}
+- accent: ${palette.accent}
+- text: ${palette.text}
+- surface: ${palette.surface||palette.secondary}
 
-Return ONLY JSON: {"elements":[...]}`;
+DESIGN RULES:
+1. Fill the slide RICHLY - no empty spaces
+2. Use EXACT pixel coordinates - think carefully about placement
+3. Text must FIT within its container - use max_w to limit width
+4. Use GRADIENT and varied colors for visual interest
+5. Every slide must look DIFFERENT from others
+6. Include brand info if provided (in footer)
+7. Persian text must be meaningful and accurate for the topic
+8. If has_table=true, include a table element with real data
+9. If has_chart=true, include a chart with real data
+10. If has_image_placeholder=true, add a beautiful placeholder
+
+AVAILABLE ELEMENTS:
+- gradient_bg: {type, x, y, w, h, color1, color2, vertical}
+- header_band: {type, y, h, color, gradient_end?}
+- footer_band: {type, h, color}
+- rect: {type, x, y, w, h, color, radius, border?, border_width?}
+- circle: {type, x, y, w, color, border?}
+- text: {type, x, y, text, size, color, bold?}
+- text_wrapped: {type, x, y, text, size, color, max_w, bold?, align?}
+- text_center: {type, x, y, w, text, size, color, bold?}
+- line: {type, x, y, x2, y2, color, line_width}
+- arrow: {type, x, y, x2, y2, color, line_width}
+- divider: {type, x, y, w, color, thickness, gradient_end?}
+- icon_box: {type, x, y, w, h, title, body, box_color, text_color, title_size?, body_size?, radius?, border?}
+- number_highlight: {type, x, y, w, h, number, label, box_color, number_color, label_color, number_size?, label_size?, radius?}
+- step_boxes: {type, x, y, steps:[{title,body}], step_w, step_h, gap, colors:[]}
+- table: {type, x, y, w, h, headers:[], rows:[[]], header_bg, header_text, row_bg1, row_bg2, text_color, font_size?}
+- pie_chart: {type, x, y, w, h, data:[{value,label}], colors:[], text_color?, legend?}
+- bar_chart: {type, x, y, w, h, data:[{value,label}], colors:[]}
+- image_placeholder: {type, x, y, w, h, bg_color, label?, radius?}
+- progress_bar: {type, x, y, w, h, percent, color1, color2, label?, text_color?, font_size?}
+
+Return ONLY valid JSON: {"elements":[...]}`;
 
       let elements = [];
       for(let att=0; att<3; att++) {
         try {
-          const et = await callClaude(cKey, ep, 2000);
-          elements = parseJSON(et).elements || [];
-          break;
-        } catch(e) {
-          if(att===2) elements = [
-            {type:'header_band',y:0,h:80,color:palette.primary},
-            {type:'text',x:50,y:20,text:slide.title,size:36,color:'#ffffff',bold:true}
-          ];
+          const et = await callClaude(cKey, ep, 2500);
+          const parsed = parseJSON(et);
+          elements = parsed.elements || [];
+          if(elements.length > 3) break;
+        } catch(err) {
+          if(att===2) {
+            elements = [
+              {type:'header_band', y:0, h:90, color:palette.primary, gradient_end:palette.secondary},
+              {type:'text_wrapped', x:50, y:20, text:slide.title, size:38, color:'#ffffff', max_w:1180, bold:true},
+              {type:'text_wrapped', x:50, y:70, text:slide.subtitle||slide.focus, size:20, color:'rgba(255,255,255,0.8)', max_w:900},
+            ];
+          }
         }
       }
+      
       addLog(`  ${elements.length} المان طراحی شد ✓`);
-
-      let imgB64 = null;
-      if(gKey && slide.image_prompt) {
-        addLog(`  جمینی در حال ساخت تصویر...`);
-        for(let att=0; att<2; att++) {
-          imgB64 = await callGemini(gKey, slide.image_prompt);
-          if(imgB64) break;
-        }
-        if(imgB64) addLog(`  تصویر آماده شد ✓`);
-        else addLog(`  تصویر ساخته نشد`, true);
-      }
-
-      const img = await drawSlide(palette, elements, imgB64);
+      const img = await renderSlide(palette, elements);
       slideImages.push(img);
       addLog(`  اسلاید ${i+1} رندر شد ✓`);
     }
@@ -522,6 +837,7 @@ Return ONLY JSON: {"elements":[...]}`;
     document.getElementById('dlBtn').href = url;
     document.getElementById('res').classList.add('show');
     document.getElementById('prog').classList.remove('show');
+    addLog('تمام! ✓');
 
   } catch(e) {
     document.getElementById('errEl').classList.add('show');
